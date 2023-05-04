@@ -1622,13 +1622,13 @@ class Ui_MainWindow(object):
             if self.mohasebe_banki.isChecked() == True:
                 d = (a * (c/1200)) * (pow((1+(c/1200)),b)) / (pow((1+(c/1200)),b)-1) * e
                 a = self.lineEdit_2.setText(
-                     "مبلغ قسط ماهانه شما :{:,.0f}".format(d, ","))
+                     "مبلغ قسط ماهانه شما :{:,.0f} تومان ".format(d, ","))
                 
             else:
                 d = a * (c/100) * (b+1) / 2400
                 f = (d + a)/ b 
                 a = self.lineEdit_2.setText(
-                "مبلغ بهره شما : {:,.0f}".format(f, ","))
+                "مبلغ قسط ماهانه شما : {:,.0f} تومان ".format(f, ","))
                 
         except Exception as e:
             msgBox = QMessageBox()
@@ -1647,11 +1647,11 @@ class Ui_MainWindow(object):
             if self.mohasebe_banki_4.isChecked() == True:
                 d = (a * (c/1200)) * (pow((1+(c/1200)),b)) / (pow((1+(c/1200)),b)-1) * b - a   
                 a = self.lineEdit_3.setText(
-                "مبلغ بهره شما : {:,.0f}".format(d, ","))
+                "مبلغ بهره شما : {:,.0f} تومان ".format(d, ","))
             else:
                 d = a * (c/100) * (b+1) / 2400
                 a = self.lineEdit_3.setText(
-            "مبلغ بهره شما : {:,.0f}".format(d, ","))
+            "مبلغ بهره شما : {:,.0f} تومان ".format(d, ","))
         except Exception as e:
             msgBox = QMessageBox()
             msgBox.setIcon(QMessageBox.Warning)
@@ -1668,7 +1668,7 @@ class Ui_MainWindow(object):
 
             d = (a * b)/(100*(c/100)+100) * 100
             a = self.lineEdit_2.setText(
-                "مبلغ وام شما : {:,.0f}".format(d, ","))
+                "مبلغ وام شما : {:,.0f} تومان ".format(d, ","))
         except Exception as e:
             msgBox = QMessageBox()
             msgBox.setIcon(QMessageBox.Warning)
@@ -1685,7 +1685,7 @@ class Ui_MainWindow(object):
 
             Amount = principal * (pow((1 + rate / 100), time))
             CI = Amount - principal
-            CI = self.lineEdit_3.setText("سود مرکب شما : {:,.0f}".format(CI))
+            CI = self.lineEdit_3.setText("سود مرکب شما : {:,.0f} تومان ".format(CI))
         except ValueError as e:
             msgBox = QMessageBox()
             msgBox.setIcon(QMessageBox.Warning)

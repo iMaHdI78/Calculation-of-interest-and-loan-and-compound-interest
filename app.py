@@ -1,6 +1,5 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QMessageBox
-from keyboard import *
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -13,6 +12,10 @@ class Ui_MainWindow(object):
         MainWindow.setSizePolicy(sizePolicy)
         MainWindow.setMinimumSize(QtCore.QSize(798, 626))
         MainWindow.setMaximumSize(QtCore.QSize(798, 626))
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap("test.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        MainWindow.setWindowIcon(icon)
+        MainWindow.setUnifiedTitleAndToolBarOnMac(False)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.tabWidget = QtWidgets.QTabWidget(self.centralwidget)
@@ -1536,8 +1539,8 @@ class Ui_MainWindow(object):
         MainWindow.setStatusBar(self.statusbar)
 
         self.retranslateUi(MainWindow)
-        self.tabWidget.setCurrentIndex(1)
-        self.tabWidget_2.setCurrentIndex(1)
+        self.tabWidget.setCurrentIndex(0)
+        self.tabWidget_2.setCurrentIndex(0)
         self.tabWidget_3.setCurrentIndex(0)
         self.tabWidget_4.setCurrentIndex(0)
         self.mohasebe.clicked.connect(self.calculate_Qest) # type: ignore
@@ -1548,7 +1551,7 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "محاسبه بهره و وام"))
         self.mablaq.setText(_translate("MainWindow", "مبلغ سپرده :"))
         self.tqest.setText(_translate("MainWindow", "تعداد اقساط :"))
         self.bahre.setText(_translate("MainWindow", "درصد بهره :"))
@@ -1606,30 +1609,43 @@ class Ui_MainWindow(object):
         self.label_8.setText(_translate("MainWindow", "مقدار سود =سرمایه اولیه (1 + سود سالیانه / تعداد دفعاتی که سود در سال مرکب میشود)به توان تعداد دفعاتی که سود در سال مرکب میشود "))
         self.label_16.setText(_translate("MainWindow", "* تعداد سال هایی که سرمایه گذاری طول میکشد – سرمایه اولیه"))
         self.label_18.setText(_translate("MainWindow", "محاسبه ی اقساط و بهره :"))
-    
+        
     def calculate_Qest(self):
-
         try:
-            a = int(self.mablaq_entry.text().replace(',', ''))
 
-            b = float(self.tqest_entry.text().replace(',', ''))
+            try:
+                a = int(self.mablaq_entry.text().replace(',', ''))
 
-            c = float(self.bahre_entry.text().replace(',', ''))
+                b = float(self.tqest_entry.text().replace(',', ''))
 
-            e = float(self.time_frame_entry.text().replace(',', ''))
-            
+                c = float(self.bahre_entry.text().replace(',', ''))
 
-            if self.mohasebe_banki.isChecked() == True:
-                d = (a * (c/1200)) * (pow((1+(c/1200)),b)) / (pow((1+(c/1200)),b)-1) * e
-                a = self.lineEdit_2.setText(
-                     "مبلغ قسط ماهانه شما :{:,.0f} تومان ".format(d, ","))
+                e = float(self.time_frame_entry.text().replace(',', ''))
                 
-            else:
-                d = a * (c/100) * (b+1) / 2400
-                f = (d + a)/ b 
-                a = self.lineEdit_2.setText(
-                "مبلغ قسط ماهانه شما : {:,.0f} تومان ".format(f, ","))
-                
+                if a == 0 or b == 0 or c == 0 or e == 0:
+                    raise ZeroDivisionError("خطای تقسیم بر صفر")
+
+                if self.mohasebe_banki.isChecked() == True:
+                    d = (a * (c/1200)) * (pow((1+(c/1200)),b)) / (pow((1+(c/1200)),b)-1) * e
+                    a = self.lineEdit_2.setText(
+                        "مبلغ قسط ماهانه شما :{:,.0f} تومان".format(d, ","))
+                    
+                else:
+                    d = a * (c/100) * (b+1) / 2400
+                    f = (d + a)/ b 
+                    a = self.lineEdit_2.setText(
+                    "مبلغ قسط ماهانه شما : {:,.0f} تومان".format(f, ","))
+                    
+            except ZeroDivisionError as e:
+                msgBox = QMessageBox()
+                msgBox.setIcon(QMessageBox.Warning)
+                msgBox.setText("خطای تقسیم بر صفر!")
+                msgBox.setWindowTitle("خطا")
+                msgBox.setStandardButtons(QMessageBox.Ok)
+                #msgBox.setIconPixmap(QPixmap("warning.png"))
+                msgBox.exec_()
+                print(e)
+                         
         except Exception as e:
             msgBox = QMessageBox()
             msgBox.setIcon(QMessageBox.Warning)
@@ -1637,21 +1653,36 @@ class Ui_MainWindow(object):
             msgBox.setWindowTitle("خطا")
             msgBox.setStandardButtons(QMessageBox.Ok)
             msgBox.exec_()
-            
+ 
     def calculate_bahre(self):
         try:
-        
-            a = float(self.mablaq_entry_4.text().replace(',', ''))
-            b = float(self.tqest_entry_4.text())
-            c = float(self.bahre_entry_4.text())
-            if self.mohasebe_banki_4.isChecked() == True:
-                d = (a * (c/1200)) * (pow((1+(c/1200)),b)) / (pow((1+(c/1200)),b)-1) * b - a   
-                a = self.lineEdit_3.setText(
-                "مبلغ بهره شما : {:,.0f} تومان ".format(d, ","))
-            else:
-                d = a * (c/100) * (b+1) / 2400
-                a = self.lineEdit_3.setText(
-            "مبلغ بهره شما : {:,.0f} تومان ".format(d, ","))
+            try:
+            
+                a = float(self.mablaq_entry_4.text().replace(',', ''))
+                b = float(self.tqest_entry_4.text())
+                c = float(self.bahre_entry_4.text())
+                
+                if a == 0 or b == 0 or c == 0:
+                    raise ZeroDivisionError("خطای تقسیم بر صفر")
+                
+                if self.mohasebe_banki_4.isChecked() == True:
+                    d = (a * (c/1200)) * (pow((1+(c/1200)),b)) / (pow((1+(c/1200)),b)-1) * b - a   
+                    a = self.lineEdit_3.setText(
+                    "مبلغ بهره شما : {:,.0f} تومان".format(d, ","))
+                else:
+                    d = a * (c/100) * (b+1) / 2400
+                    a = self.lineEdit_3.setText(
+                "مبلغ بهره شما : {:,.0f} تومان".format(d, ","))
+                    
+            except ZeroDivisionError as e:
+                msgBox = QMessageBox()
+                msgBox.setIcon(QMessageBox.Warning)
+                msgBox.setText("خطای تقسیم بر صفر!")
+                msgBox.setWindowTitle("خطا")
+                msgBox.setStandardButtons(QMessageBox.Ok)
+                msgBox.exec_()
+                print(e)       
+                    
         except Exception as e:
             msgBox = QMessageBox()
             msgBox.setIcon(QMessageBox.Warning)
@@ -1662,13 +1693,26 @@ class Ui_MainWindow(object):
             
     def calculate_mablaq(self):
         try:
-            a = float(self.tqest_entry_2.text())
-            b = float(self.mqest_entry_2.text().replace(',', ''))
-            c = float(self.bahre_entry_2.text())
-
-            d = (a * b)/(100*(c/100)+100) * 100
-            a = self.lineEdit_2.setText(
-                "مبلغ وام شما : {:,.0f} تومان ".format(d, ","))
+            try:
+                a = float(self.tqest_entry_2.text())
+                b = float(self.mqest_entry_2.text().replace(',', ''))
+                c = float(self.bahre_entry_2.text())
+                
+                if a == 0 or b == 0 or c == 0:
+                    raise ZeroDivisionError("خطای تقسیم بر صفر")
+                d = (a * b)/(100*(c/100)+100) * 100
+                a = self.lineEdit_2.setText(
+                    "مبلغ وام شما : {:,.0f} تومان".format(d, ","))
+                
+            except ZeroDivisionError as e:
+                msgBox = QMessageBox()
+                msgBox.setIcon(QMessageBox.Warning)
+                msgBox.setText("خطای تقسیم بر صفر!")
+                msgBox.setWindowTitle("خطا")
+                msgBox.setStandardButtons(QMessageBox.Ok)
+                msgBox.exec_()
+                print(e)
+                
         except Exception as e:
             msgBox = QMessageBox()
             msgBox.setIcon(QMessageBox.Warning)
@@ -1676,25 +1720,37 @@ class Ui_MainWindow(object):
             msgBox.setWindowTitle("خطا")
             msgBox.setStandardButtons(QMessageBox.Ok)
             msgBox.exec_() 
-                    
+            print(e)
+    
     def compound_interest(self):
         try:
-            principal = float(self.mablaq_entry_7.text().replace(',', ''))
-            rate = float(self.bahre_entry_8.text())
-            time = float(self.time_entry.text())
-
-            Amount = principal * (pow((1 + rate / 100), time))
-            CI = Amount - principal
-            CI = self.lineEdit_3.setText("سود مرکب شما : {:,.0f} تومان ".format(CI))
+            try:
+                principal = float(self.mablaq_entry_7.text().replace(',', ''))
+                rate = float(self.bahre_entry_8.text())
+                time = float(self.time_entry.text())
+                
+                if principal == 0 or rate == 0 or time == 0:
+                     raise ZeroDivisionError("خطای تقسیم بر صفر")
+                Amount = principal * (pow((1 + rate / 100), time))
+                CI = Amount - principal
+                CI = self.lineEdit_3.setText("سود مرکب شما : {:,.0f}".format(CI))
+                
+            except ZeroDivisionError as e:
+                msgBox = QMessageBox()
+                msgBox.setIcon(QMessageBox.Warning)
+                msgBox.setText("خطای تقسیم بر صفر!")
+                msgBox.setWindowTitle("خطا")
+                msgBox.setStandardButtons(QMessageBox.Ok)
+                msgBox.exec_()
+                print(e)
+                
         except ValueError as e:
             msgBox = QMessageBox()
             msgBox.setIcon(QMessageBox.Warning)
             msgBox.setText("لطفا تمامی فیلد هارا پر نمایید!")
             msgBox.setWindowTitle("خطا")
             msgBox.setStandardButtons(QMessageBox.Ok)
-            msgBox.exec_() 
-            
-        
+            msgBox.exec_()
 
 if __name__ == "__main__":
     import sys

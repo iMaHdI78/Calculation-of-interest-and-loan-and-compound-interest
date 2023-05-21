@@ -3,9 +3,6 @@ from PyQt5.QtWidgets import QMessageBox
 import sys
 from PyQt5.QtGui import QKeySequence
 from PyQt5.QtCore import Qt
-from PyQt5.QtCore import QRegExp
-from PyQt5.QtGui import QRegExpValidator
-from PyQt5.QtWidgets import QLineEdit
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):

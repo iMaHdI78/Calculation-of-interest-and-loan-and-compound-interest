@@ -1,5 +1,11 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QMessageBox
+import sys
+from PyQt5.QtGui import QKeySequence
+from PyQt5.QtCore import Qt
+from PyQt5.QtCore import QRegExp
+from PyQt5.QtGui import QRegExpValidator
+from PyQt5.QtWidgets import QLineEdit
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -15,6 +21,8 @@ class Ui_MainWindow(object):
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap("test.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         MainWindow.setWindowIcon(icon)
+        MainWindow.setToolTip("")
+        MainWindow.setToolButtonStyle(QtCore.Qt.ToolButtonFollowStyle)
         MainWindow.setUnifiedTitleAndToolBarOnMac(False)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
@@ -78,24 +86,6 @@ class Ui_MainWindow(object):
         font.setPointSize(14)
         self.bahre.setFont(font)
         self.bahre.setObjectName("bahre")
-        self.mohasebe = QtWidgets.QPushButton(self.tab)
-        self.mohasebe.setGeometry(QtCore.QRect(0, 170, 111, 31))
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.mohasebe.sizePolicy().hasHeightForWidth())
-        self.mohasebe.setSizePolicy(sizePolicy)
-        font = QtGui.QFont()
-        font.setFamily("B Titr")
-        font.setPointSize(14)
-        font.setBold(True)
-        font.setWeight(75)
-        self.mohasebe.setFont(font)
-        self.mohasebe.setAutoRepeat(False)
-        self.mohasebe.setAutoDefault(True)
-        self.mohasebe.setDefault(True)
-        self.mohasebe.setFlat(False)
-        self.mohasebe.setObjectName("mohasebe")
         self.tqest_entry = QtWidgets.QLineEdit(self.tab)
         self.tqest_entry.setGeometry(QtCore.QRect(70, 50, 81, 31))
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
@@ -107,7 +97,7 @@ class Ui_MainWindow(object):
         brush = QtGui.QBrush(QtGui.QColor(0, 0, 0))
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Active, QtGui.QPalette.WindowText, brush)
-        brush = QtGui.QBrush(QtGui.QColor(200, 200, 200))
+        brush = QtGui.QBrush(QtGui.QColor(170, 255, 255))
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Active, QtGui.QPalette.Button, brush)
         brush = QtGui.QBrush(QtGui.QColor(255, 255, 255))
@@ -131,10 +121,10 @@ class Ui_MainWindow(object):
         brush = QtGui.QBrush(QtGui.QColor(0, 0, 0))
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Active, QtGui.QPalette.ButtonText, brush)
-        brush = QtGui.QBrush(QtGui.QColor(200, 200, 200))
+        brush = QtGui.QBrush(QtGui.QColor(170, 255, 255))
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Active, QtGui.QPalette.Base, brush)
-        brush = QtGui.QBrush(QtGui.QColor(200, 200, 200))
+        brush = QtGui.QBrush(QtGui.QColor(170, 255, 255))
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Active, QtGui.QPalette.Window, brush)
         brush = QtGui.QBrush(QtGui.QColor(0, 0, 0))
@@ -152,7 +142,7 @@ class Ui_MainWindow(object):
         brush = QtGui.QBrush(QtGui.QColor(0, 0, 0))
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Inactive, QtGui.QPalette.WindowText, brush)
-        brush = QtGui.QBrush(QtGui.QColor(200, 200, 200))
+        brush = QtGui.QBrush(QtGui.QColor(170, 255, 255))
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Inactive, QtGui.QPalette.Button, brush)
         brush = QtGui.QBrush(QtGui.QColor(255, 255, 255))
@@ -176,10 +166,10 @@ class Ui_MainWindow(object):
         brush = QtGui.QBrush(QtGui.QColor(0, 0, 0))
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Inactive, QtGui.QPalette.ButtonText, brush)
-        brush = QtGui.QBrush(QtGui.QColor(200, 200, 200))
+        brush = QtGui.QBrush(QtGui.QColor(170, 255, 255))
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Inactive, QtGui.QPalette.Base, brush)
-        brush = QtGui.QBrush(QtGui.QColor(200, 200, 200))
+        brush = QtGui.QBrush(QtGui.QColor(170, 255, 255))
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Inactive, QtGui.QPalette.Window, brush)
         brush = QtGui.QBrush(QtGui.QColor(0, 0, 0))
@@ -197,7 +187,7 @@ class Ui_MainWindow(object):
         brush = QtGui.QBrush(QtGui.QColor(114, 98, 127))
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.WindowText, brush)
-        brush = QtGui.QBrush(QtGui.QColor(200, 200, 200))
+        brush = QtGui.QBrush(QtGui.QColor(170, 255, 255))
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.Button, brush)
         brush = QtGui.QBrush(QtGui.QColor(255, 255, 255))
@@ -221,10 +211,10 @@ class Ui_MainWindow(object):
         brush = QtGui.QBrush(QtGui.QColor(114, 98, 127))
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.ButtonText, brush)
-        brush = QtGui.QBrush(QtGui.QColor(200, 200, 200))
+        brush = QtGui.QBrush(QtGui.QColor(170, 255, 255))
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.Base, brush)
-        brush = QtGui.QBrush(QtGui.QColor(200, 200, 200))
+        brush = QtGui.QBrush(QtGui.QColor(170, 255, 255))
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.Window, brush)
         brush = QtGui.QBrush(QtGui.QColor(0, 0, 0))
@@ -247,13 +237,22 @@ class Ui_MainWindow(object):
         font.setWeight(75)
         self.tqest_entry.setFont(font)
         self.tqest_entry.setLayoutDirection(QtCore.Qt.LeftToRight)
-        self.tqest_entry.setStyleSheet("background-color: rgb(200, 200, 200);")
+        self.tqest_entry.setStyleSheet("QLineEdit{\n"
+"    border: 1px solid black;\n"
+"    border-radius: 8px;\n"
+"    background: rgb(170, 255, 255);\n"
+"    padding: 2px\n"
+"}\n"
+"QLineEdit{\n"
+"    border-color: blue;\n"
+"}")
         self.tqest_entry.setText("")
         self.tqest_entry.setFrame(False)
         self.tqest_entry.setAlignment(QtCore.Qt.AlignCenter)
         self.tqest_entry.setCursorMoveStyle(QtCore.Qt.VisualMoveStyle)
         self.tqest_entry.setObjectName("tqest_entry")
         self.bahre_entry = QtWidgets.QLineEdit(self.tab)
+        
         self.bahre_entry.setGeometry(QtCore.QRect(70, 130, 81, 31))
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
@@ -264,7 +263,7 @@ class Ui_MainWindow(object):
         brush = QtGui.QBrush(QtGui.QColor(0, 0, 0))
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Active, QtGui.QPalette.WindowText, brush)
-        brush = QtGui.QBrush(QtGui.QColor(200, 200, 200))
+        brush = QtGui.QBrush(QtGui.QColor(170, 255, 255))
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Active, QtGui.QPalette.Button, brush)
         brush = QtGui.QBrush(QtGui.QColor(255, 255, 255))
@@ -288,10 +287,10 @@ class Ui_MainWindow(object):
         brush = QtGui.QBrush(QtGui.QColor(0, 0, 0))
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Active, QtGui.QPalette.ButtonText, brush)
-        brush = QtGui.QBrush(QtGui.QColor(200, 200, 200))
+        brush = QtGui.QBrush(QtGui.QColor(170, 255, 255))
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Active, QtGui.QPalette.Base, brush)
-        brush = QtGui.QBrush(QtGui.QColor(200, 200, 200))
+        brush = QtGui.QBrush(QtGui.QColor(170, 255, 255))
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Active, QtGui.QPalette.Window, brush)
         brush = QtGui.QBrush(QtGui.QColor(0, 0, 0))
@@ -309,7 +308,7 @@ class Ui_MainWindow(object):
         brush = QtGui.QBrush(QtGui.QColor(0, 0, 0))
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Inactive, QtGui.QPalette.WindowText, brush)
-        brush = QtGui.QBrush(QtGui.QColor(200, 200, 200))
+        brush = QtGui.QBrush(QtGui.QColor(170, 255, 255))
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Inactive, QtGui.QPalette.Button, brush)
         brush = QtGui.QBrush(QtGui.QColor(255, 255, 255))
@@ -333,10 +332,10 @@ class Ui_MainWindow(object):
         brush = QtGui.QBrush(QtGui.QColor(0, 0, 0))
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Inactive, QtGui.QPalette.ButtonText, brush)
-        brush = QtGui.QBrush(QtGui.QColor(200, 200, 200))
+        brush = QtGui.QBrush(QtGui.QColor(170, 255, 255))
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Inactive, QtGui.QPalette.Base, brush)
-        brush = QtGui.QBrush(QtGui.QColor(200, 200, 200))
+        brush = QtGui.QBrush(QtGui.QColor(170, 255, 255))
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Inactive, QtGui.QPalette.Window, brush)
         brush = QtGui.QBrush(QtGui.QColor(0, 0, 0))
@@ -354,7 +353,7 @@ class Ui_MainWindow(object):
         brush = QtGui.QBrush(QtGui.QColor(114, 98, 127))
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.WindowText, brush)
-        brush = QtGui.QBrush(QtGui.QColor(200, 200, 200))
+        brush = QtGui.QBrush(QtGui.QColor(170, 255, 255))
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.Button, brush)
         brush = QtGui.QBrush(QtGui.QColor(255, 255, 255))
@@ -378,10 +377,10 @@ class Ui_MainWindow(object):
         brush = QtGui.QBrush(QtGui.QColor(114, 98, 127))
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.ButtonText, brush)
-        brush = QtGui.QBrush(QtGui.QColor(200, 200, 200))
+        brush = QtGui.QBrush(QtGui.QColor(170, 255, 255))
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.Base, brush)
-        brush = QtGui.QBrush(QtGui.QColor(200, 200, 200))
+        brush = QtGui.QBrush(QtGui.QColor(170, 255, 255))
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.Window, brush)
         brush = QtGui.QBrush(QtGui.QColor(0, 0, 0))
@@ -404,7 +403,15 @@ class Ui_MainWindow(object):
         font.setWeight(75)
         self.bahre_entry.setFont(font)
         self.bahre_entry.setLayoutDirection(QtCore.Qt.LeftToRight)
-        self.bahre_entry.setStyleSheet("background-color: rgb(200, 200, 200);")
+        self.bahre_entry.setStyleSheet("QLineEdit{\n"
+"    border: 1px solid black;\n"
+"    border-radius: 8px;\n"
+"    background: rgb(170, 255, 255);\n"
+"    padding: 2px\n"
+"}\n"
+"QLineEdit{\n"
+"    border-color: blue;\n"
+"}")
         self.bahre_entry.setText("")
         self.bahre_entry.setFrame(False)
         self.bahre_entry.setAlignment(QtCore.Qt.AlignCenter)
@@ -434,7 +441,7 @@ class Ui_MainWindow(object):
         brush = QtGui.QBrush(QtGui.QColor(0, 0, 0))
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Active, QtGui.QPalette.WindowText, brush)
-        brush = QtGui.QBrush(QtGui.QColor(200, 200, 200))
+        brush = QtGui.QBrush(QtGui.QColor(170, 255, 255))
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Active, QtGui.QPalette.Button, brush)
         brush = QtGui.QBrush(QtGui.QColor(255, 255, 255))
@@ -458,10 +465,10 @@ class Ui_MainWindow(object):
         brush = QtGui.QBrush(QtGui.QColor(0, 0, 0))
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Active, QtGui.QPalette.ButtonText, brush)
-        brush = QtGui.QBrush(QtGui.QColor(200, 200, 200))
+        brush = QtGui.QBrush(QtGui.QColor(170, 255, 255))
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Active, QtGui.QPalette.Base, brush)
-        brush = QtGui.QBrush(QtGui.QColor(200, 200, 200))
+        brush = QtGui.QBrush(QtGui.QColor(170, 255, 255))
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Active, QtGui.QPalette.Window, brush)
         brush = QtGui.QBrush(QtGui.QColor(0, 0, 0))
@@ -479,7 +486,7 @@ class Ui_MainWindow(object):
         brush = QtGui.QBrush(QtGui.QColor(0, 0, 0))
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Inactive, QtGui.QPalette.WindowText, brush)
-        brush = QtGui.QBrush(QtGui.QColor(200, 200, 200))
+        brush = QtGui.QBrush(QtGui.QColor(170, 255, 255))
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Inactive, QtGui.QPalette.Button, brush)
         brush = QtGui.QBrush(QtGui.QColor(255, 255, 255))
@@ -503,10 +510,10 @@ class Ui_MainWindow(object):
         brush = QtGui.QBrush(QtGui.QColor(0, 0, 0))
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Inactive, QtGui.QPalette.ButtonText, brush)
-        brush = QtGui.QBrush(QtGui.QColor(200, 200, 200))
+        brush = QtGui.QBrush(QtGui.QColor(170, 255, 255))
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Inactive, QtGui.QPalette.Base, brush)
-        brush = QtGui.QBrush(QtGui.QColor(200, 200, 200))
+        brush = QtGui.QBrush(QtGui.QColor(170, 255, 255))
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Inactive, QtGui.QPalette.Window, brush)
         brush = QtGui.QBrush(QtGui.QColor(0, 0, 0))
@@ -524,7 +531,7 @@ class Ui_MainWindow(object):
         brush = QtGui.QBrush(QtGui.QColor(114, 98, 127))
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.WindowText, brush)
-        brush = QtGui.QBrush(QtGui.QColor(200, 200, 200))
+        brush = QtGui.QBrush(QtGui.QColor(170, 255, 255))
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.Button, brush)
         brush = QtGui.QBrush(QtGui.QColor(255, 255, 255))
@@ -548,10 +555,10 @@ class Ui_MainWindow(object):
         brush = QtGui.QBrush(QtGui.QColor(114, 98, 127))
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.ButtonText, brush)
-        brush = QtGui.QBrush(QtGui.QColor(200, 200, 200))
+        brush = QtGui.QBrush(QtGui.QColor(170, 255, 255))
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.Base, brush)
-        brush = QtGui.QBrush(QtGui.QColor(200, 200, 200))
+        brush = QtGui.QBrush(QtGui.QColor(170, 255, 255))
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.Window, brush)
         brush = QtGui.QBrush(QtGui.QColor(0, 0, 0))
@@ -574,53 +581,86 @@ class Ui_MainWindow(object):
         font.setWeight(75)
         self.time_frame_entry.setFont(font)
         self.time_frame_entry.setLayoutDirection(QtCore.Qt.LeftToRight)
-        self.time_frame_entry.setStyleSheet("background-color: rgb(200, 200, 200);")
+        self.time_frame_entry.setStyleSheet("QLineEdit{\n"
+"    border: 1px solid black;\n"
+"    border-radius: 8px;\n"
+"    background: rgb(170, 255, 255);\n"
+"    padding: 2px\n"
+"}\n"
+"QLineEdit{\n"
+"    border-color: blue;\n"
+"}")
         self.time_frame_entry.setText("")
         self.time_frame_entry.setFrame(False)
         self.time_frame_entry.setAlignment(QtCore.Qt.AlignCenter)
         self.time_frame_entry.setObjectName("time_frame_entry")
-        self.mablaq_entry = QtWidgets.QSpinBox(self.tab)
-        self.mablaq_entry.setGeometry(QtCore.QRect(30, 10, 171, 31))
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.mablaq_entry.sizePolicy().hasHeightForWidth())
-        self.mablaq_entry.setSizePolicy(sizePolicy)
+        self.mohasebe_banki = QtWidgets.QCheckBox(self.tab)
+        self.mohasebe_banki.setGeometry(QtCore.QRect(169, 170, 211, 20))
+        self.mohasebe_banki.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.mohasebe_banki.setLayoutDirection(QtCore.Qt.RightToLeft)
+        self.mohasebe_banki.setObjectName("mohasebe_banki")
+        self.mablaq_entry = QtWidgets.QDoubleSpinBox(self.tab)
+        self.mablaq_entry.setGeometry(QtCore.QRect(10, 10, 211, 31))
         font = QtGui.QFont()
         font.setFamily("B Koodak")
         font.setPointSize(14)
-        font.setBold(True)
-        font.setWeight(75)
         self.mablaq_entry.setFont(font)
-        self.mablaq_entry.setStyleSheet("background-color: rgb(200, 200, 200);")
-        self.mablaq_entry.setWrapping(False)
+        self.mablaq_entry.setCursor(QtGui.QCursor(QtCore.Qt.WhatsThisCursor))
+        self.mablaq_entry.setLayoutDirection(QtCore.Qt.LeftToRight)
+        self.mablaq_entry.setStyleSheet("QDoubleSpinBox{\n"
+"    border: 1px solid black;\n"
+"    border-radius: 8px;\n"
+"    background: rgb(170, 255, 255);\n"
+"    padding: 2px;\n"
+"}\n"
+"QDoubleSpinBox{\n"
+"    border-color:blue;\n"
+"}")
+        self.mablaq_entry.setFrame(False)
         self.mablaq_entry.setAlignment(QtCore.Qt.AlignCenter)
         self.mablaq_entry.setButtonSymbols(QtWidgets.QAbstractSpinBox.NoButtons)
+        self.mablaq_entry.setKeyboardTracking(True)
         self.mablaq_entry.setProperty("showGroupSeparator", True)
-        self.mablaq_entry.setMinimum(0)
-        self.mablaq_entry.setMaximum(1000000000)
+        self.mablaq_entry.setDecimals(0)
+        self.mablaq_entry.setMaximum(1e+46)
+        self.mablaq_entry.setSingleStep(1e+51)
         self.mablaq_entry.setObjectName("mablaq_entry")
-        self.label_10 = QtWidgets.QLabel(self.tab)
-        self.label_10.setGeometry(QtCore.QRect(40, 140, 21, 20))
+        self.mohasebe = QtWidgets.QPushButton(self.tab)
+        self.mohasebe.setGeometry(QtCore.QRect(0, 170, 111, 31))
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.mohasebe.sizePolicy().hasHeightForWidth())
+        self.mohasebe.setSizePolicy(sizePolicy)
         font = QtGui.QFont()
-        font.setPointSize(15)
+        font.setFamily("B Titr")
+        font.setPointSize(14)
         font.setBold(True)
         font.setWeight(75)
-        self.label_10.setFont(font)
-        self.label_10.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
-        self.label_10.setObjectName("label_10")
-        self.label_11 = QtWidgets.QLabel(self.tab)
-        self.label_11.setGeometry(QtCore.QRect(10, 60, 47, 21))
-        self.label_11.setObjectName("label_11")
-        self.mohasebe_banki = QtWidgets.QCheckBox(self.tab)
-        self.mohasebe_banki.setGeometry(QtCore.QRect(169, 170, 211, 20))
-        self.mohasebe_banki.setLayoutDirection(QtCore.Qt.RightToLeft)
-        self.mohasebe_banki.setObjectName("mohasebe_banki")
+        self.mohasebe.setFont(font)
+        self.mohasebe.setStyleSheet("QPushButton{\n"
+"    border-radus: 30px;\n"
+"    background-color: rgb(85,170,225);\n"
+"}\n"
+"\n"
+"QPushButton:hover{\n"
+"    background-color: rgb(50,110,225);\n"
+"    color:rgb(225,225,225)\n"
+"}\n"
+"\n"
+"QPushButton:pressed{\n"
+"    background-color:rgb(100,170,225);\n"
+"}")
+        self.mohasebe.setAutoRepeat(False)
+        self.mohasebe.setAutoDefault(True)
+        self.mohasebe.setDefault(True)
+        self.mohasebe.setFlat(False)
+        self.mohasebe.setObjectName("mohasebe")
         self.tabWidget.addTab(self.tab, "")
         self.tab_2 = QtWidgets.QWidget()
         self.tab_2.setObjectName("tab_2")
         self.bahre_entry_2 = QtWidgets.QLineEdit(self.tab_2)
-        self.bahre_entry_2.setGeometry(QtCore.QRect(110, 110, 71, 31))
+        self.bahre_entry_2.setGeometry(QtCore.QRect(100, 90, 71, 31))
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -633,12 +673,20 @@ class Ui_MainWindow(object):
         font.setWeight(75)
         self.bahre_entry_2.setFont(font)
         self.bahre_entry_2.setLayoutDirection(QtCore.Qt.LeftToRight)
-        self.bahre_entry_2.setStyleSheet("background-color: rgb(200, 200, 200);")
+        self.bahre_entry_2.setStyleSheet("QLineEdit{\n"
+"    background: rgb(255, 255, 127);\n"
+"    border: 1px solid black;\n"
+"    border-radius: 8px;\n"
+"    padding: 2px\n"
+"}\n"
+"QLineEdit{\n"
+"    border-color:orange;\n"
+"}")
         self.bahre_entry_2.setFrame(False)
         self.bahre_entry_2.setAlignment(QtCore.Qt.AlignCenter)
         self.bahre_entry_2.setObjectName("bahre_entry_2")
         self.tqest_entry_2 = QtWidgets.QLineEdit(self.tab_2)
-        self.tqest_entry_2.setGeometry(QtCore.QRect(110, 30, 71, 31))
+        self.tqest_entry_2.setGeometry(QtCore.QRect(100, 50, 71, 31))
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -651,7 +699,15 @@ class Ui_MainWindow(object):
         font.setWeight(75)
         self.tqest_entry_2.setFont(font)
         self.tqest_entry_2.setLayoutDirection(QtCore.Qt.LeftToRight)
-        self.tqest_entry_2.setStyleSheet("background-color: rgb(200, 200, 200);")
+        self.tqest_entry_2.setStyleSheet("QLineEdit{\n"
+"    background: rgb(255, 255, 127);\n"
+"    border: 1px solid black;\n"
+"    border-radius: 8px;\n"
+"    padding: 2px\n"
+"}\n"
+"QLineEdit{\n"
+"    border-color:orange;\n"
+"}")
         self.tqest_entry_2.setFrame(False)
         self.tqest_entry_2.setAlignment(QtCore.Qt.AlignCenter)
         self.tqest_entry_2.setObjectName("tqest_entry_2")
@@ -668,13 +724,27 @@ class Ui_MainWindow(object):
         font.setBold(True)
         font.setWeight(75)
         self.mohasebe_2.setFont(font)
+        self.mohasebe_2.setStyleSheet("QPushButton{\n"
+"    border-radus: 30px;\n"
+"    background-color: rgb(85,170,225);\n"
+"}\n"
+"\n"
+"QPushButton:hover{\n"
+"    background-color: rgb(50,110,225);\n"
+"    color:rgb(225,225,225)\n"
+"}\n"
+"\n"
+"QPushButton:pressed{\n"
+"    background-color:rgb(100,170,225);\n"
+"}\n"
+"")
         self.mohasebe_2.setAutoRepeat(False)
         self.mohasebe_2.setAutoDefault(True)
         self.mohasebe_2.setDefault(True)
         self.mohasebe_2.setFlat(False)
         self.mohasebe_2.setObjectName("mohasebe_2")
         self.bahre_2 = QtWidgets.QLabel(self.tab_2)
-        self.bahre_2.setGeometry(QtCore.QRect(240, 110, 131, 41))
+        self.bahre_2.setGeometry(QtCore.QRect(240, 80, 131, 41))
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -692,7 +762,7 @@ class Ui_MainWindow(object):
         self.bahre_2.setTextInteractionFlags(QtCore.Qt.TextSelectableByKeyboard|QtCore.Qt.TextSelectableByMouse)
         self.bahre_2.setObjectName("bahre_2")
         self.mqest_2 = QtWidgets.QLabel(self.tab_2)
-        self.mqest_2.setGeometry(QtCore.QRect(260, 70, 111, 41))
+        self.mqest_2.setGeometry(QtCore.QRect(260, 10, 111, 31))
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -703,41 +773,38 @@ class Ui_MainWindow(object):
         font.setPointSize(14)
         self.mqest_2.setFont(font)
         self.mqest_2.setObjectName("mqest_2")
-        self.mqest_entry_2 = QtWidgets.QSpinBox(self.tab_2)
-        self.mqest_entry_2.setGeometry(QtCore.QRect(50, 70, 141, 31))
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.mqest_entry_2.sizePolicy().hasHeightForWidth())
-        self.mqest_entry_2.setSizePolicy(sizePolicy)
-        font = QtGui.QFont()
-        font.setFamily("B Koodak")
-        font.setPointSize(14)
-        font.setBold(True)
-        font.setWeight(75)
-        self.mqest_entry_2.setFont(font)
-        self.mqest_entry_2.setStyleSheet("background-color: rgb(200, 200, 200);")
-        self.mqest_entry_2.setAlignment(QtCore.Qt.AlignCenter)
-        self.mqest_entry_2.setButtonSymbols(QtWidgets.QAbstractSpinBox.NoButtons)
-        self.mqest_entry_2.setProperty("showGroupSeparator", True)
-        self.mqest_entry_2.setMaximum(999999999)
-        self.mqest_entry_2.setObjectName("mqest_entry_2")
         self.tqest_2 = QtWidgets.QLabel(self.tab_2)
-        self.tqest_2.setGeometry(QtCore.QRect(250, 40, 121, 20))
+        self.tqest_2.setGeometry(QtCore.QRect(250, 55, 121, 20))
         font = QtGui.QFont()
         font.setFamily("IRYekan")
         self.tqest_2.setFont(font)
         self.tqest_2.setObjectName("tqest_2")
-        self.label_4 = QtWidgets.QLabel(self.tab_2)
-        self.label_4.setGeometry(QtCore.QRect(50, 120, 47, 13))
+        self.mqest_entry_2 = QtWidgets.QDoubleSpinBox(self.tab_2)
+        self.mqest_entry_2.setGeometry(QtCore.QRect(20, 10, 211, 31))
         font = QtGui.QFont()
-        font.setPointSize(15)
-        self.label_4.setFont(font)
-        self.label_4.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
-        self.label_4.setObjectName("label_4")
-        self.label_13 = QtWidgets.QLabel(self.tab_2)
-        self.label_13.setGeometry(QtCore.QRect(40, 35, 47, 21))
-        self.label_13.setObjectName("label_13")
+        font.setFamily("B Koodak")
+        font.setPointSize(14)
+        font.setBold(False)
+        font.setWeight(50)
+        self.mqest_entry_2.setFont(font)
+        self.mqest_entry_2.setLayoutDirection(QtCore.Qt.LeftToRight)
+        self.mqest_entry_2.setStyleSheet("QDoubleSpinBox{\n"
+"    background: rgb(255, 255, 127);\n"
+"    border: 1px solid black;\n"
+"    border-radius: 8px;\n"
+"    padding: 2px\n"
+"}\n"
+"QDoubleSpinBox{\n"
+"    border-color:orange;\n"
+"}")
+        self.mqest_entry_2.setFrame(False)
+        self.mqest_entry_2.setAlignment(QtCore.Qt.AlignCenter)
+        self.mqest_entry_2.setButtonSymbols(QtWidgets.QAbstractSpinBox.NoButtons)
+        self.mqest_entry_2.setProperty("showGroupSeparator", True)
+        self.mqest_entry_2.setDecimals(0)
+        self.mqest_entry_2.setMaximum(1e+46)
+        self.mqest_entry_2.setSingleStep(1e+51)
+        self.mqest_entry_2.setObjectName("mqest_entry_2")
         self.tabWidget.addTab(self.tab_2, "")
         self.tabWidget_2 = QtWidgets.QTabWidget(self.centralwidget)
         self.tabWidget_2.setGeometry(QtCore.QRect(400, 0, 401, 251))
@@ -756,45 +823,25 @@ class Ui_MainWindow(object):
         self.tab_4 = QtWidgets.QWidget()
         self.tab_4.setObjectName("tab_4")
         self.mablaq_7 = QtWidgets.QLabel(self.tab_4)
-        self.mablaq_7.setGeometry(QtCore.QRect(230, 40, 131, 31))
+        self.mablaq_7.setGeometry(QtCore.QRect(240, 10, 131, 31))
         font = QtGui.QFont()
         font.setFamily("IRYekan")
         self.mablaq_7.setFont(font)
         self.mablaq_7.setObjectName("mablaq_7")
         self.bahre_8 = QtWidgets.QLabel(self.tab_4)
-        self.bahre_8.setGeometry(QtCore.QRect(180, 90, 181, 31))
+        self.bahre_8.setGeometry(QtCore.QRect(184, 51, 181, 31))
         font = QtGui.QFont()
         font.setFamily("IRYekan")
         self.bahre_8.setFont(font)
         self.bahre_8.setObjectName("bahre_8")
         self.time_frame_3 = QtWidgets.QLabel(self.tab_4)
-        self.time_frame_3.setGeometry(QtCore.QRect(160, 130, 221, 31))
+        self.time_frame_3.setGeometry(QtCore.QRect(164, 91, 221, 31))
         font = QtGui.QFont()
         font.setFamily("IRYekan")
         self.time_frame_3.setFont(font)
         self.time_frame_3.setObjectName("time_frame_3")
-        self.mablaq_entry_7 = QtWidgets.QSpinBox(self.tab_4)
-        self.mablaq_entry_7.setGeometry(QtCore.QRect(20, 40, 171, 31))
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.mablaq_entry_7.sizePolicy().hasHeightForWidth())
-        self.mablaq_entry_7.setSizePolicy(sizePolicy)
-        font = QtGui.QFont()
-        font.setFamily("B Koodak")
-        font.setPointSize(14)
-        font.setBold(True)
-        font.setWeight(75)
-        self.mablaq_entry_7.setFont(font)
-        self.mablaq_entry_7.setStyleSheet("background-color: rgb(200, 200, 200);")
-        self.mablaq_entry_7.setWrapping(False)
-        self.mablaq_entry_7.setAlignment(QtCore.Qt.AlignCenter)
-        self.mablaq_entry_7.setButtonSymbols(QtWidgets.QAbstractSpinBox.NoButtons)
-        self.mablaq_entry_7.setProperty("showGroupSeparator", True)
-        self.mablaq_entry_7.setMaximum(999999999)
-        self.mablaq_entry_7.setObjectName("mablaq_entry_7")
         self.bahre_entry_8 = QtWidgets.QLineEdit(self.tab_4)
-        self.bahre_entry_8.setGeometry(QtCore.QRect(70, 90, 71, 31))
+        self.bahre_entry_8.setGeometry(QtCore.QRect(74, 51, 71, 31))
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -807,12 +854,21 @@ class Ui_MainWindow(object):
         font.setWeight(75)
         self.bahre_entry_8.setFont(font)
         self.bahre_entry_8.setLayoutDirection(QtCore.Qt.LeftToRight)
-        self.bahre_entry_8.setStyleSheet("background-color: rgb(200, 200, 200);")
+        self.bahre_entry_8.setStyleSheet("QLineEdit{\n"
+"    \n"
+"    background: rgb(254, 221, 255);\n"
+"    border: 1px solid black;\n"
+"    border-radius: 8px;\n"
+"    padding: 2px\n"
+"}\n"
+"QLineEdit{\n"
+"    border-color:purple;\n"
+"}")
         self.bahre_entry_8.setFrame(False)
         self.bahre_entry_8.setAlignment(QtCore.Qt.AlignCenter)
         self.bahre_entry_8.setObjectName("bahre_entry_8")
         self.time_entry = QtWidgets.QLineEdit(self.tab_4)
-        self.time_entry.setGeometry(QtCore.QRect(70, 130, 71, 31))
+        self.time_entry.setGeometry(QtCore.QRect(74, 91, 71, 31))
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -825,7 +881,16 @@ class Ui_MainWindow(object):
         font.setWeight(75)
         self.time_entry.setFont(font)
         self.time_entry.setLayoutDirection(QtCore.Qt.LeftToRight)
-        self.time_entry.setStyleSheet("background-color: rgb(200, 200, 200);")
+        self.time_entry.setStyleSheet("QLineEdit{\n"
+"    \n"
+"    background: rgb(254, 221, 255);\n"
+"    border: 1px solid black;\n"
+"    border-radius: 8px;\n"
+"    padding: 2px\n"
+"}\n"
+"QLineEdit{\n"
+"    border-color:purple;\n"
+"}")
         self.time_entry.setFrame(False)
         self.time_entry.setAlignment(QtCore.Qt.AlignCenter)
         self.time_entry.setObjectName("time_entry")
@@ -842,25 +907,50 @@ class Ui_MainWindow(object):
         font.setBold(True)
         font.setWeight(75)
         self.mohasebe_7.setFont(font)
+        self.mohasebe_7.setStyleSheet("QPushButton{\n"
+"    border-radus: 25px;\n"
+"    background-color: rgb(85,170,225);\n"
+"}\n"
+"\n"
+"QPushButton:hover{\n"
+"    background-color: rgb(50,110,225);\n"
+"    color:rgb(225,225,225)\n"
+"}\n"
+"\n"
+"QPushButton:pressed{\n"
+"    background-color:rgb(100,170,225);\n"
+"}")
         self.mohasebe_7.setAutoRepeat(False)
         self.mohasebe_7.setAutoDefault(True)
         self.mohasebe_7.setDefault(True)
         self.mohasebe_7.setFlat(False)
         self.mohasebe_7.setObjectName("mohasebe_7")
-        self.label_9 = QtWidgets.QLabel(self.tab_4)
-        self.label_9.setGeometry(QtCore.QRect(10, 100, 47, 13))
+        self.mablaq_entry_7 = QtWidgets.QDoubleSpinBox(self.tab_4)
+        self.mablaq_entry_7.setGeometry(QtCore.QRect(10, 10, 221, 31))
         font = QtGui.QFont()
-        font.setPointSize(15)
-        font.setBold(True)
-        font.setWeight(75)
-        self.label_9.setFont(font)
-        self.label_9.setScaledContents(False)
-        self.label_9.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
-        self.label_9.setOpenExternalLinks(True)
-        self.label_9.setObjectName("label_9")
-        self.label_12 = QtWidgets.QLabel(self.tab_4)
-        self.label_12.setGeometry(QtCore.QRect(16, 129, 41, 31))
-        self.label_12.setObjectName("label_12")
+        font.setFamily("B Koodak")
+        font.setPointSize(14)
+        self.mablaq_entry_7.setFont(font)
+        self.mablaq_entry_7.setCursor(QtGui.QCursor(QtCore.Qt.WhatsThisCursor))
+        self.mablaq_entry_7.setLayoutDirection(QtCore.Qt.LeftToRight)
+        self.mablaq_entry_7.setStyleSheet("QDoubleSpinBox{\n"
+"    \n"
+"    background: rgb(254, 221, 255);\n"
+"    border: 1px solid black;\n"
+"    border-radius: 8px;\n"
+"    padding: 2px\n"
+"}\n"
+"QDoubleSpinBox{\n"
+"    border-color:purple;\n"
+"}")
+        self.mablaq_entry_7.setFrame(False)
+        self.mablaq_entry_7.setAlignment(QtCore.Qt.AlignCenter)
+        self.mablaq_entry_7.setButtonSymbols(QtWidgets.QAbstractSpinBox.NoButtons)
+        self.mablaq_entry_7.setProperty("showGroupSeparator", True)
+        self.mablaq_entry_7.setDecimals(0)
+        self.mablaq_entry_7.setMaximum(1e+46)
+        self.mablaq_entry_7.setSingleStep(1e+51)
+        self.mablaq_entry_7.setObjectName("mablaq_entry_7")
         self.tabWidget_2.addTab(self.tab_4, "")
         self.tab_3 = QtWidgets.QWidget()
         self.tab_3.setObjectName("tab_3")
@@ -940,7 +1030,7 @@ class Ui_MainWindow(object):
         self.tabWidget_3.setSizePolicy(sizePolicy)
         font = QtGui.QFont()
         font.setFamily("B Nazanin")
-        font.setPointSize(14)
+        font.setPointSize(13)
         font.setBold(True)
         font.setWeight(75)
         self.tabWidget_3.setFont(font)
@@ -948,7 +1038,7 @@ class Ui_MainWindow(object):
         self.tab_5 = QtWidgets.QWidget()
         self.tab_5.setObjectName("tab_5")
         self.bahre_4 = QtWidgets.QLabel(self.tab_5)
-        self.bahre_4.setGeometry(QtCore.QRect(240, 110, 121, 31))
+        self.bahre_4.setGeometry(QtCore.QRect(240, 90, 121, 31))
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -960,7 +1050,7 @@ class Ui_MainWindow(object):
         self.bahre_4.setFont(font)
         self.bahre_4.setObjectName("bahre_4")
         self.mablaq_4 = QtWidgets.QLabel(self.tab_5)
-        self.mablaq_4.setGeometry(QtCore.QRect(230, 20, 131, 41))
+        self.mablaq_4.setGeometry(QtCore.QRect(230, 0, 131, 41))
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -978,7 +1068,7 @@ class Ui_MainWindow(object):
         self.mablaq_4.setTextInteractionFlags(QtCore.Qt.TextSelectableByKeyboard|QtCore.Qt.TextSelectableByMouse)
         self.mablaq_4.setObjectName("mablaq_4")
         self.tqest_4 = QtWidgets.QLabel(self.tab_5)
-        self.tqest_4.setGeometry(QtCore.QRect(230, 70, 131, 31))
+        self.tqest_4.setGeometry(QtCore.QRect(230, 50, 131, 31))
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -990,7 +1080,7 @@ class Ui_MainWindow(object):
         self.tqest_4.setFont(font)
         self.tqest_4.setObjectName("tqest_4")
         self.tqest_entry_4 = QtWidgets.QLineEdit(self.tab_5)
-        self.tqest_entry_4.setGeometry(QtCore.QRect(90, 70, 71, 31))
+        self.tqest_entry_4.setGeometry(QtCore.QRect(90, 50, 71, 31))
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -1004,43 +1094,20 @@ class Ui_MainWindow(object):
         self.tqest_entry_4.setFont(font)
         self.tqest_entry_4.setFocusPolicy(QtCore.Qt.WheelFocus)
         self.tqest_entry_4.setLayoutDirection(QtCore.Qt.LeftToRight)
-        self.tqest_entry_4.setStyleSheet("background-color: rgb(200, 200, 200);")
+        self.tqest_entry_4.setStyleSheet("QLineEdit{\n"
+"    background-color: rgb(204, 204, 204);\n"
+"    border: 1px solid black;\n"
+"    border-radius: 8px;\n"
+"    padding: 2px\n"
+"}\n"
+"QLineEdit{\n"
+"    border-color:navy;\n"
+"}")
         self.tqest_entry_4.setFrame(False)
         self.tqest_entry_4.setAlignment(QtCore.Qt.AlignCenter)
         self.tqest_entry_4.setObjectName("tqest_entry_4")
-        self.mablaq_entry_4 = QtWidgets.QSpinBox(self.tab_5)
-        self.mablaq_entry_4.setGeometry(QtCore.QRect(30, 30, 181, 31))
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.mablaq_entry_4.sizePolicy().hasHeightForWidth())
-        self.mablaq_entry_4.setSizePolicy(sizePolicy)
-        font = QtGui.QFont()
-        font.setFamily("B Koodak")
-        font.setPointSize(14)
-        font.setBold(True)
-        font.setWeight(75)
-        self.mablaq_entry_4.setFont(font)
-        self.mablaq_entry_4.setStyleSheet("background-color: rgb(200, 200, 200);")
-        self.mablaq_entry_4.setAlignment(QtCore.Qt.AlignCenter)
-        self.mablaq_entry_4.setButtonSymbols(QtWidgets.QAbstractSpinBox.NoButtons)
-        self.mablaq_entry_4.setProperty("showGroupSeparator", True)
-        self.mablaq_entry_4.setMaximum(999999999)
-        self.mablaq_entry_4.setObjectName("mablaq_entry_4")
-        self.label_14 = QtWidgets.QLabel(self.tab_5)
-        self.label_14.setGeometry(QtCore.QRect(30, 75, 47, 21))
-        self.label_14.setObjectName("label_14")
-        self.label_17 = QtWidgets.QLabel(self.tab_5)
-        self.label_17.setGeometry(QtCore.QRect(60, 120, 21, 20))
-        font = QtGui.QFont()
-        font.setPointSize(15)
-        font.setBold(True)
-        font.setWeight(75)
-        self.label_17.setFont(font)
-        self.label_17.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
-        self.label_17.setObjectName("label_17")
         self.bahre_entry_4 = QtWidgets.QLineEdit(self.tab_5)
-        self.bahre_entry_4.setGeometry(QtCore.QRect(90, 110, 71, 31))
+        self.bahre_entry_4.setGeometry(QtCore.QRect(90, 90, 71, 31))
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -1050,7 +1117,7 @@ class Ui_MainWindow(object):
         brush = QtGui.QBrush(QtGui.QColor(0, 0, 0))
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Active, QtGui.QPalette.WindowText, brush)
-        brush = QtGui.QBrush(QtGui.QColor(200, 200, 200))
+        brush = QtGui.QBrush(QtGui.QColor(204, 204, 204))
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Active, QtGui.QPalette.Button, brush)
         brush = QtGui.QBrush(QtGui.QColor(255, 255, 255))
@@ -1074,10 +1141,10 @@ class Ui_MainWindow(object):
         brush = QtGui.QBrush(QtGui.QColor(0, 0, 0))
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Active, QtGui.QPalette.ButtonText, brush)
-        brush = QtGui.QBrush(QtGui.QColor(200, 200, 200))
+        brush = QtGui.QBrush(QtGui.QColor(204, 204, 204))
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Active, QtGui.QPalette.Base, brush)
-        brush = QtGui.QBrush(QtGui.QColor(200, 200, 200))
+        brush = QtGui.QBrush(QtGui.QColor(204, 204, 204))
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Active, QtGui.QPalette.Window, brush)
         brush = QtGui.QBrush(QtGui.QColor(0, 0, 0))
@@ -1095,7 +1162,7 @@ class Ui_MainWindow(object):
         brush = QtGui.QBrush(QtGui.QColor(0, 0, 0))
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Inactive, QtGui.QPalette.WindowText, brush)
-        brush = QtGui.QBrush(QtGui.QColor(200, 200, 200))
+        brush = QtGui.QBrush(QtGui.QColor(204, 204, 204))
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Inactive, QtGui.QPalette.Button, brush)
         brush = QtGui.QBrush(QtGui.QColor(255, 255, 255))
@@ -1119,10 +1186,10 @@ class Ui_MainWindow(object):
         brush = QtGui.QBrush(QtGui.QColor(0, 0, 0))
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Inactive, QtGui.QPalette.ButtonText, brush)
-        brush = QtGui.QBrush(QtGui.QColor(200, 200, 200))
+        brush = QtGui.QBrush(QtGui.QColor(204, 204, 204))
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Inactive, QtGui.QPalette.Base, brush)
-        brush = QtGui.QBrush(QtGui.QColor(200, 200, 200))
+        brush = QtGui.QBrush(QtGui.QColor(204, 204, 204))
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Inactive, QtGui.QPalette.Window, brush)
         brush = QtGui.QBrush(QtGui.QColor(0, 0, 0))
@@ -1140,7 +1207,7 @@ class Ui_MainWindow(object):
         brush = QtGui.QBrush(QtGui.QColor(114, 98, 127))
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.WindowText, brush)
-        brush = QtGui.QBrush(QtGui.QColor(200, 200, 200))
+        brush = QtGui.QBrush(QtGui.QColor(204, 204, 204))
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.Button, brush)
         brush = QtGui.QBrush(QtGui.QColor(255, 255, 255))
@@ -1164,10 +1231,10 @@ class Ui_MainWindow(object):
         brush = QtGui.QBrush(QtGui.QColor(114, 98, 127))
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.ButtonText, brush)
-        brush = QtGui.QBrush(QtGui.QColor(200, 200, 200))
+        brush = QtGui.QBrush(QtGui.QColor(204, 204, 204))
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.Base, brush)
-        brush = QtGui.QBrush(QtGui.QColor(200, 200, 200))
+        brush = QtGui.QBrush(QtGui.QColor(204, 204, 204))
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.Window, brush)
         brush = QtGui.QBrush(QtGui.QColor(0, 0, 0))
@@ -1190,15 +1257,49 @@ class Ui_MainWindow(object):
         font.setWeight(75)
         self.bahre_entry_4.setFont(font)
         self.bahre_entry_4.setLayoutDirection(QtCore.Qt.LeftToRight)
-        self.bahre_entry_4.setStyleSheet("background-color: rgb(200, 200, 200);")
+        self.bahre_entry_4.setStyleSheet("QLineEdit{\n"
+"    background-color: rgb(204, 204, 204);\n"
+"    border: 1px solid black;\n"
+"    border-radius: 8px;\n"
+"    padding: 2px\n"
+"}\n"
+"QLineEdit{\n"
+"    border-color:navy;\n"
+"}\n"
+"")
         self.bahre_entry_4.setText("")
         self.bahre_entry_4.setFrame(False)
         self.bahre_entry_4.setAlignment(QtCore.Qt.AlignCenter)
         self.bahre_entry_4.setObjectName("bahre_entry_4")
         self.mohasebe_banki_4 = QtWidgets.QCheckBox(self.tab_5)
         self.mohasebe_banki_4.setGeometry(QtCore.QRect(160, 170, 211, 20))
+        self.mohasebe_banki_4.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.mohasebe_banki_4.setLayoutDirection(QtCore.Qt.RightToLeft)
         self.mohasebe_banki_4.setObjectName("mohasebe_banki_4")
+        self.mablaq_entry_4 = QtWidgets.QDoubleSpinBox(self.tab_5)
+        self.mablaq_entry_4.setGeometry(QtCore.QRect(10, 10, 221, 31))
+        font = QtGui.QFont()
+        font.setFamily("B Koodak")
+        font.setPointSize(14)
+        self.mablaq_entry_4.setFont(font)
+        self.mablaq_entry_4.setLayoutDirection(QtCore.Qt.LeftToRight)
+        self.mablaq_entry_4.setStyleSheet("QDoubleSpinBox{\n"
+"    background-color: rgb(204, 204, 204);\n"
+"    border: 1px solid black;\n"
+"    border-radius: 8px;\n"
+"    padding: 2px\n"
+"}\n"
+"QDoubleSpinBox{\n"
+"    border-color:navy;\n"
+"}")
+        self.mablaq_entry_4.setFrame(False)
+        self.mablaq_entry_4.setAlignment(QtCore.Qt.AlignCenter)
+        self.mablaq_entry_4.setButtonSymbols(QtWidgets.QAbstractSpinBox.NoButtons)
+        self.mablaq_entry_4.setProperty("showGroupSeparator", True)
+        self.mablaq_entry_4.setDecimals(0)
+        self.mablaq_entry_4.setMaximum(1e+46)
+        self.mablaq_entry_4.setSingleStep(1e+51)
+        self.mablaq_entry_4.setObjectName("mablaq_entry_4")
         self.mohasebe_4 = QtWidgets.QPushButton(self.tab_5)
         self.mohasebe_4.setGeometry(QtCore.QRect(0, 170, 111, 31))
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
@@ -1212,6 +1313,19 @@ class Ui_MainWindow(object):
         font.setBold(True)
         font.setWeight(75)
         self.mohasebe_4.setFont(font)
+        self.mohasebe_4.setStyleSheet("QPushButton{\n"
+"    border-radus: 25px;\n"
+"    background-color: rgb(85,170,225);\n"
+"}\n"
+"\n"
+"QPushButton:hover{\n"
+"    background-color: rgb(50,110,225);\n"
+"    color:rgb(225,225,225)\n"
+"}\n"
+"\n"
+"QPushButton:pressed{\n"
+"    background-color:rgb(100,170,225);\n"
+"}")
         self.mohasebe_4.setAutoRepeat(False)
         self.mohasebe_4.setAutoDefault(True)
         self.mohasebe_4.setDefault(True)
@@ -1399,6 +1513,9 @@ class Ui_MainWindow(object):
         font.setFamily("B Nazanin")
         font.setPointSize(16)
         self.lineEdit_2.setFont(font)
+        self.lineEdit_2.setStyleSheet("qLineEdit{\n"
+" border- radus: 25px;\n"
+"}")
         self.lineEdit_2.setAlignment(QtCore.Qt.AlignCenter)
         self.lineEdit_2.setObjectName("lineEdit_2")
         self.lineEdit_3 = QtWidgets.QLineEdit(self.centralwidget)
@@ -1425,7 +1542,7 @@ class Ui_MainWindow(object):
         self.lineEdit.setObjectName("lineEdit")
         self.label_3 = QtWidgets.QLabel(self.centralwidget)
         self.label_3.setEnabled(True)
-        self.label_3.setGeometry(QtCore.QRect(610, 330, 171, 31))
+        self.label_3.setGeometry(QtCore.QRect(310, 330, 171, 31))
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -1440,48 +1557,28 @@ class Ui_MainWindow(object):
         font.setStrikeOut(False)
         self.label_3.setFont(font)
         self.label_3.setObjectName("label_3")
-        self.label_15 = QtWidgets.QLabel(self.centralwidget)
-        self.label_15.setEnabled(True)
-        self.label_15.setGeometry(QtCore.QRect(10, 410, 771, 31))
-        font = QtGui.QFont()
-        font.setPointSize(8)
-        font.setBold(True)
-        font.setWeight(75)
-        self.label_15.setFont(font)
-        self.label_15.setMouseTracking(False)
-        self.label_15.setTabletTracking(False)
-        self.label_15.setFocusPolicy(QtCore.Qt.NoFocus)
-        self.label_15.setContextMenuPolicy(QtCore.Qt.NoContextMenu)
-        self.label_15.setObjectName("label_15")
-        self.label = QtWidgets.QLabel(self.centralwidget)
-        self.label.setEnabled(True)
-        self.label.setGeometry(QtCore.QRect(20, 440, 761, 20))
-        font = QtGui.QFont()
-        font.setPointSize(8)
-        font.setBold(True)
-        font.setWeight(75)
-        self.label.setFont(font)
-        self.label.setObjectName("label")
         self.label_5 = QtWidgets.QLabel(self.centralwidget)
         self.label_5.setEnabled(True)
-        self.label_5.setGeometry(QtCore.QRect(10, 460, 771, 20))
+        self.label_5.setGeometry(QtCore.QRect(10, 420, 771, 31))
         font = QtGui.QFont()
-        font.setPointSize(9)
+        font.setPointSize(10)
         font.setBold(True)
         font.setWeight(75)
         self.label_5.setFont(font)
+        self.label_5.setWordWrap(True)
         self.label_5.setObjectName("label_5")
         self.label_6 = QtWidgets.QLabel(self.centralwidget)
-        self.label_6.setGeometry(QtCore.QRect(20, 490, 761, 20))
+        self.label_6.setGeometry(QtCore.QRect(60, 460, 721, 41))
         font = QtGui.QFont()
-        font.setPointSize(7)
+        font.setPointSize(10)
         font.setBold(True)
         font.setWeight(75)
         self.label_6.setFont(font)
+        self.label_6.setWordWrap(True)
         self.label_6.setObjectName("label_6")
         self.label_7 = QtWidgets.QLabel(self.centralwidget)
         self.label_7.setEnabled(False)
-        self.label_7.setGeometry(QtCore.QRect(550, 520, 231, 21))
+        self.label_7.setGeometry(QtCore.QRect(550, 510, 231, 21))
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -1497,31 +1594,24 @@ class Ui_MainWindow(object):
         self.label_7.setFont(font)
         self.label_7.setObjectName("label_7")
         self.label_8 = QtWidgets.QLabel(self.centralwidget)
-        self.label_8.setGeometry(QtCore.QRect(20, 550, 771, 20))
+        self.label_8.setGeometry(QtCore.QRect(20, 540, 771, 31))
         font = QtGui.QFont()
-        font.setPointSize(8)
+        font.setPointSize(10)
         font.setBold(True)
         font.setWeight(75)
         self.label_8.setFont(font)
+        self.label_8.setWordWrap(True)
         self.label_8.setObjectName("label_8")
-        self.label_16 = QtWidgets.QLabel(self.centralwidget)
-        self.label_16.setGeometry(QtCore.QRect(80, 570, 711, 16))
-        font = QtGui.QFont()
-        font.setPointSize(8)
-        font.setBold(True)
-        font.setWeight(75)
-        self.label_16.setFont(font)
-        self.label_16.setObjectName("label_16")
         self.label_18 = QtWidgets.QLabel(self.centralwidget)
         self.label_18.setEnabled(False)
-        self.label_18.setGeometry(QtCore.QRect(510, 370, 271, 31))
+        self.label_18.setGeometry(QtCore.QRect(510, 380, 271, 31))
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.label_18.sizePolicy().hasHeightForWidth())
         self.label_18.setSizePolicy(sizePolicy)
         font = QtGui.QFont()
-        font.setPointSize(14)
+        font.setPointSize(12)
         font.setBold(True)
         font.setItalic(True)
         font.setUnderline(True)
@@ -1543,11 +1633,58 @@ class Ui_MainWindow(object):
         self.tabWidget_2.setCurrentIndex(0)
         self.tabWidget_3.setCurrentIndex(0)
         self.tabWidget_4.setCurrentIndex(0)
-        self.mohasebe.clicked.connect(self.calculate_Qest) # type: ignore
+        
+        #Commands for buttons
+        self.mohasebe.setShortcut(QKeySequence(Qt.Key_Enter))
+        self.mohasebe.clicked.connect(self.calculate_Qest)
+        
+        self.mohasebe_2.setShortcut(QKeySequence(Qt.Key_Enter))
         self.mohasebe_2.clicked.connect(self.calculate_mablaq) # type: ignore
+        
+        self.mohasebe_7.setShortcut(QKeySequence(Qt.CTRL + Qt.Key_Enter))
         self.mohasebe_7.clicked.connect(self.compound_interest) # type: ignore
+        
+        self.mohasebe_4.setShortcut(QKeySequence(Qt.CTRL + Qt.Key_Enter))
         self.mohasebe_4.clicked.connect(self.calculate_bahre) # type: ignore
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
+        
+        MainWindow.setTabOrder(self.mablaq_entry, self.tqest_entry)
+        MainWindow.setTabOrder(self.tqest_entry, self.time_frame_entry)
+        MainWindow.setTabOrder(self.time_frame_entry, self.bahre_entry)
+        MainWindow.setTabOrder(self.bahre_entry, self.mohasebe_banki)
+        MainWindow.setTabOrder(self.mohasebe_banki, self.mohasebe)
+        MainWindow.setTabOrder(self.mohasebe, self.lineEdit_2)
+        MainWindow.setTabOrder(self.lineEdit_2, self.mqest_entry_2)
+        MainWindow.setTabOrder(self.mqest_entry_2, self.tqest_entry_2)
+        MainWindow.setTabOrder(self.tqest_entry_2, self.bahre_entry_2)
+        MainWindow.setTabOrder(self.bahre_entry_2, self.mohasebe_2)
+        MainWindow.setTabOrder(self.mohasebe_2, self.mablaq_entry_7)
+        MainWindow.setTabOrder(self.mablaq_entry_7, self.bahre_entry_8)
+        MainWindow.setTabOrder(self.bahre_entry_8, self.time_entry)
+        MainWindow.setTabOrder(self.time_entry, self.mohasebe_7)
+        MainWindow.setTabOrder(self.mohasebe_7, self.mablaq_entry_4)
+        MainWindow.setTabOrder(self.mablaq_entry_4, self.tqest_entry_4)
+        MainWindow.setTabOrder(self.tqest_entry_4, self.bahre_entry_4)
+        MainWindow.setTabOrder(self.bahre_entry_4, self.mohasebe_banki_4)
+        MainWindow.setTabOrder(self.mohasebe_banki_4, self.mohasebe_4)
+        MainWindow.setTabOrder(self.mohasebe_4, self.lineEdit_3)
+        MainWindow.setTabOrder(self.lineEdit_3, self.bahre_entry_3)
+        MainWindow.setTabOrder(self.bahre_entry_3, self.mablaq_entry_3)
+        MainWindow.setTabOrder(self.mablaq_entry_3, self.tabWidget_3)
+        MainWindow.setTabOrder(self.tabWidget_3, self.mohasebe_3)
+        MainWindow.setTabOrder(self.mohasebe_3, self.mablaq_entry_6)
+        MainWindow.setTabOrder(self.mablaq_entry_6, self.tqest_entry_3)
+        MainWindow.setTabOrder(self.tqest_entry_3, self.mablaq_entry_5)
+        MainWindow.setTabOrder(self.mablaq_entry_5, self.tqest_entry_5)
+        MainWindow.setTabOrder(self.tqest_entry_5, self.tqest_entry_6)
+        MainWindow.setTabOrder(self.tqest_entry_6, self.tabWidget_2)
+        MainWindow.setTabOrder(self.tabWidget_2, self.mohasebe_6)
+        MainWindow.setTabOrder(self.mohasebe_6, self.bahre_entry_6)
+        MainWindow.setTabOrder(self.bahre_entry_6, self.mohasebe_5)
+        MainWindow.setTabOrder(self.mohasebe_5, self.lineEdit)
+        MainWindow.setTabOrder(self.lineEdit, self.bahre_entry_5)
+        MainWindow.setTabOrder(self.bahre_entry_5, self.tabWidget)
+        MainWindow.setTabOrder(self.tabWidget, self.tabWidget_4)
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
@@ -1555,25 +1692,35 @@ class Ui_MainWindow(object):
         self.mablaq.setText(_translate("MainWindow", "مبلغ سپرده :"))
         self.tqest.setText(_translate("MainWindow", "تعداد اقساط :"))
         self.bahre.setText(_translate("MainWindow", "درصد بهره :"))
-        self.mohasebe.setText(_translate("MainWindow", "محاسبه"))
-        self.time_frame.setText(_translate("MainWindow", "تعداد دفعات پرداخت (در ماه) :"))
-        self.label_10.setText(_translate("MainWindow", "%"))
-        self.label_11.setText(_translate("MainWindow", "ماه"))
+        self.tqest_entry.setPlaceholderText(_translate("MainWindow", "ماه"))
+        self.bahre_entry.setPlaceholderText(_translate("MainWindow", "%"))
+        self.time_frame.setText(_translate("MainWindow", "تعداد دفعات پرداخت :"))
+        self.time_frame_entry.setPlaceholderText(_translate("MainWindow", "در ماه"))
+        self.mohasebe_banki.setToolTip(_translate("MainWindow", "<html><head/><body><p align=\"right\">اگر تیک گزینه را فعال نمایید روش محاسبه بر اساس فرمول جدیدی که بانکها استفاده میکنند محاسبه انجام می شود و به شما نمایش داده میشود، روش محاسبه در قسمت راهنمای برنامه برای شما نوشته شده است</p></body></html>"))
         self.mohasebe_banki.setText(_translate("MainWindow", "محاسبه به روش جدید بانکی"))
+        self.mablaq_entry.setToolTip(_translate("MainWindow", "<html><head/><body><p align=\"right\">لطفا مبلغ را به تومان وارد نمایید</p></body></html>"))
+        self.mablaq_entry.setWhatsThis(_translate("MainWindow", "<html><head/><body><p><br/></p></body></html>"))
+        self.mablaq_entry.setSpecialValueText(_translate("MainWindow", "تومان"))
+        self.mohasebe.setText(_translate("MainWindow", "محاسبه"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), _translate("MainWindow", "محاسبه ی اقساط"))
+        self.bahre_entry_2.setPlaceholderText(_translate("MainWindow", "%"))
+        self.tqest_entry_2.setPlaceholderText(_translate("MainWindow", "ماه"))
         self.mohasebe_2.setText(_translate("MainWindow", "محاسبه"))
         self.bahre_2.setText(_translate("MainWindow", "درصد بهره :"))
         self.mqest_2.setText(_translate("MainWindow", "مبلغ قسط :"))
         self.tqest_2.setText(_translate("MainWindow", "تعداد اقساط :"))
-        self.label_4.setText(_translate("MainWindow", "%"))
-        self.label_13.setText(_translate("MainWindow", "ماه"))
+        self.mqest_entry_2.setToolTip(_translate("MainWindow", "<html><head/><body><p align=\"right\">لطفا مبلغ را به تومان وارد نمایید</p></body></html>"))
+        self.mqest_entry_2.setSpecialValueText(_translate("MainWindow", "تومان"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), _translate("MainWindow", "محاسبه ی مبلغ وام"))
         self.mablaq_7.setText(_translate("MainWindow", "مبلغ سپرده :"))
         self.bahre_8.setText(_translate("MainWindow", "درصد بهره سالانه :"))
         self.time_frame_3.setText(_translate("MainWindow", "مدت زمان مورد انتظار :"))
+        self.bahre_entry_8.setPlaceholderText(_translate("MainWindow", "%"))
+        self.time_entry.setPlaceholderText(_translate("MainWindow", "سال"))
+        self.mohasebe_7.setToolTip(_translate("MainWindow", "<html><head/><body><p align=\"right\">CTRL + ENTER</p></body></html>"))
         self.mohasebe_7.setText(_translate("MainWindow", "محاسبه"))
-        self.label_9.setText(_translate("MainWindow", "%"))
-        self.label_12.setText(_translate("MainWindow", "سال"))
+        self.mablaq_entry_7.setToolTip(_translate("MainWindow", "<html><head/><body><p align=\"right\">لطفا مبلغ را به تومان وارد نمایید</p></body></html>"))
+        self.mablaq_entry_7.setSpecialValueText(_translate("MainWindow", "تومان"))
         self.tabWidget_2.setTabText(self.tabWidget_2.indexOf(self.tab_4), _translate("MainWindow", "محاسبه ی سود مرکب"))
         self.mohasebe_3.setText(_translate("MainWindow", "محاسبه"))
         self.bahre_3.setText(_translate("MainWindow", "درصد بهره :"))
@@ -1582,9 +1729,13 @@ class Ui_MainWindow(object):
         self.bahre_4.setText(_translate("MainWindow", "درصد بهره :"))
         self.mablaq_4.setText(_translate("MainWindow", "مبلغ سپرده :"))
         self.tqest_4.setText(_translate("MainWindow", "تعداد اقساط :"))
-        self.label_14.setText(_translate("MainWindow", "ماه"))
-        self.label_17.setText(_translate("MainWindow", "%"))
+        self.tqest_entry_4.setPlaceholderText(_translate("MainWindow", "ماه"))
+        self.bahre_entry_4.setPlaceholderText(_translate("MainWindow", "%"))
+        self.mohasebe_banki_4.setToolTip(_translate("MainWindow", "<html><head/><body><p align=\"right\">اگر تیک گزینه را فعال نمایید روش محاسبه بر اساس فرمول جدیدی که بانکها استفاده میکنند محاسبه انجام می شود و به شما نمایش داده میشود، روش محاسبه در قسمت راهنمای برنامه برای شما نوشته شده است</p></body></html>"))
         self.mohasebe_banki_4.setText(_translate("MainWindow", "محاسبه به روش جدید بانکی"))
+        self.mablaq_entry_4.setToolTip(_translate("MainWindow", "<html><head/><body><p align=\"right\">لطفا مبلغ را به تومان وارد نمایید</p></body></html>"))
+        self.mablaq_entry_4.setSpecialValueText(_translate("MainWindow", "تومان"))
+        self.mohasebe_4.setToolTip(_translate("MainWindow", "<html><head/><body><p align=\"right\">CTRL + ENTER</p></body></html>"))
         self.mohasebe_4.setText(_translate("MainWindow", "محاسبه"))
         self.tabWidget_3.setTabText(self.tabWidget_3.indexOf(self.tab_5), _translate("MainWindow", "محاسبه ی بهره"))
         self.label_2.setText(_translate("MainWindow", "بزودی در دسترس قرار میگیرد"))
@@ -1600,157 +1751,160 @@ class Ui_MainWindow(object):
         self.bahre_6.setText(_translate("MainWindow", "مبلغ قسط :"))
         self.tabWidget_4.setTabText(self.tabWidget_4.indexOf(self.tab_8), _translate("MainWindow", "محاسبه ی مبلغ وام"))
         self.tabWidget_2.setTabText(self.tabWidget_2.indexOf(self.tab_3), _translate("MainWindow", "محاسبه ی بهره"))
-        self.label_3.setText(_translate("MainWindow", "راهنمای برنامه :"))
-        self.label_15.setText(_translate("MainWindow", "در محاسبه ی مبلغ قسط و مبلغ بهره از دو روش قدیم و جدید بانکی استفاده شده،زمانی که شما تیک روش جدید محاسبه بانکی را فعال کنید"))
-        self.label.setText(_translate("MainWindow", "روش محاسبه به صورت روش جدید بانکی محاسبه میگردد و در صورت انتخاب نکردن به صورت اتوماتیک روش قدیمی محاسبه بانکی،انجام می شود."))
+        self.label_3.setWhatsThis(_translate("MainWindow", "<html><head/><body><p><span style=\" font-size:14pt; font-weight:400; font-style:normal;\">این برنامه برای آن دسته از عزیزانی که میخواهند بهره و وام و سود مرکب را محاسبه کنند تهیه شده<br/>این برنامه بر اساس فرمول بانک ها برای محاسبه استفاده میکنند تهیه شده و در اختیار شما عزیزان قرار داده شده</span></p></body></html>"))
+        self.label_3.setText(_translate("MainWindow", "راهنمای برنامه "))
         self.label_5.setText(_translate("MainWindow", "روش قدیمی : سود وام بانکی = مبلغ کلی وام * نرخ سود * (تعداد اقساط + فاصله میان هر پرداخت قسط بر حسب ماه) / 2400"))
         self.label_6.setText(_translate("MainWindow", "روش جدید : مبلغ قسط به ماه = اصل وام * نرخ سود تقسیم بر 1200 * (1 + (نرخ سود / 1200) به توان مدت ماه) / (((1 = نرخ سود / 1200) به توان مدت ماه) – 1)"))
         self.label_7.setText(_translate("MainWindow", "محاسبه ی سود مرکب:"))
-        self.label_8.setText(_translate("MainWindow", "مقدار سود =سرمایه اولیه (1 + سود سالیانه / تعداد دفعاتی که سود در سال مرکب میشود)به توان تعداد دفعاتی که سود در سال مرکب میشود "))
-        self.label_16.setText(_translate("MainWindow", "* تعداد سال هایی که سرمایه گذاری طول میکشد – سرمایه اولیه"))
+        self.label_8.setText(_translate("MainWindow", "مقدار سود =سرمایه اولیه (1 + سود سالیانه / تعداد دفعاتی که سود در سال مرکب میشود)به توان تعداد دفعاتی که سود در سال مرکب میشود  * تعداد سال هایی که سرمایه گذاری طول میکشد – سرمایه اولیه"))
         self.label_18.setText(_translate("MainWindow", "محاسبه ی اقساط و بهره :"))
         
-    def calculate_Qest(self):
-        try:
-
+        
+#Define functions to perform calculations
+    def calculate_Qest(self): #Calculate the installment amount
             try:
-                a = int(self.mablaq_entry.text().replace(',', ''))
+                    try:
+                            a = int(self.mablaq_entry.text().replace(',', ''))
 
-                b = float(self.tqest_entry.text().replace(',', ''))
+                            b = float(self.tqest_entry.text().replace(',', ''))
 
-                c = float(self.bahre_entry.text().replace(',', ''))
+                            c = float(self.bahre_entry.text().replace(',', ''))
 
-                e = float(self.time_frame_entry.text().replace(',', ''))
-                
-                if a == 0 or b == 0 or c == 0 or e == 0:
-                    raise ZeroDivisionError("خطای تقسیم بر صفر")
+                            e = float(self.time_frame_entry.text().replace(',', ''))
+                                
+                            if a == 0 or b == 0 or c == 0 or e == 0: #Throwing an error when the user enters all zeros
+                                    raise ZeroDivisionError("خطای تقسیم بر صفر")
 
-                if self.mohasebe_banki.isChecked() == True:
-                    d = (a * (c/1200)) * (pow((1+(c/1200)),b)) / (pow((1+(c/1200)),b)-1) * e
-                    a = self.lineEdit_2.setText(
-                        "مبلغ قسط ماهانه شما :{:,.0f} تومان".format(d, ","))
+                            if self.mohasebe_banki.isChecked() == True: #Calculate the installment amount in a new way
+                                    d = (a * (c/1200)) * (pow((1+(c/1200)),b)) / (pow((1+(c/1200)),b)-1) * e
+                                    a = self.lineEdit_2.setText(
+                                        "مبلغ قسط ماهانه شما :{:,.0f} تومان ".format(d, ","))
+                                
+                            else: #Calculate the installment amount in the old way
+                                    d = a * (c/100) * (b+1) / 2400 
+                                    f = (d + a)/ b 
+                                    a = self.lineEdit_2.setText(
+                                   "مبلغ قسط ماهانه شما : {:,.0f} تومان ".format(f, ","))
+                                
+                    except ZeroDivisionError as e:
+                        msgBox = QMessageBox()
+                        msgBox.setIcon(QMessageBox.Warning)
+                        msgBox.setText("خطای تقسیم بر صفر!")
+                        msgBox.setWindowTitle("خطا")
+                        msgBox.setStandardButtons(QMessageBox.Ok)
+                        #msgBox.setIconPixmap(QPixmap("warning.png"))
+                        msgBox.exec_()
+                        print(e)
+
+            except Exception as e: #Throwing an error when a field is empty
+                    msgBox = QMessageBox()
+                    msgBox.setIcon(QMessageBox.Warning)
+                    msgBox.setText("لطفا تمامی فیلد هارا پر نمایید!")
+                    msgBox.setWindowTitle("خطا")
+                    msgBox.setStandardButtons(QMessageBox.Ok)
+                    msgBox.exec_()
+
+    def calculate_bahre(self):    
+            try: 
+                    try:
+                            a = float(self.mablaq_entry_4.text().replace(',', ''))
+                            b = float(self.tqest_entry_4.text())
+                            c = float(self.bahre_entry_4.text())
+                
+                            if a == 0 or b == 0 or c == 0:
+                                    raise ZeroDivisionError("خطای تقسیم بر صفر")
+                
+                            if self.mohasebe_banki_4.isChecked() == True:
+                                    d = (a * (c/1200)) * (pow((1+(c/1200)),b)) / (pow((1+(c/1200)),b)-1) * b - a   
+                                    a = self.lineEdit_3.setText(
+                                 "مبلغ بهره شما : {:,.0f} تومان".format(d, ","))
+                            else:
+                                    d = a * (c/100) * (b+1) / 2400
+                                    a = self.lineEdit_3.setText(
+                                "مبلغ بهره شما : {:,.0f} تومان".format(d, ","))
                     
-                else:
-                    d = a * (c/100) * (b+1) / 2400
-                    f = (d + a)/ b 
-                    a = self.lineEdit_2.setText(
-                    "مبلغ قسط ماهانه شما : {:,.0f} تومان".format(f, ","))
+                    except ZeroDivisionError as e:
+                            msgBox = QMessageBox()
+                            msgBox.setIcon(QMessageBox.Warning)
+                            msgBox.setText("خطای تقسیم بر صفر!")
+                            msgBox.setWindowTitle("خطا")
+                            msgBox.setStandardButtons(QMessageBox.Ok)
+                            msgBox.exec_()
+                            print(e)       
                     
-            except ZeroDivisionError as e:
-                msgBox = QMessageBox()
-                msgBox.setIcon(QMessageBox.Warning)
-                msgBox.setText("خطای تقسیم بر صفر!")
-                msgBox.setWindowTitle("خطا")
-                msgBox.setStandardButtons(QMessageBox.Ok)
-                #msgBox.setIconPixmap(QPixmap("warning.png"))
-                msgBox.exec_()
-                print(e)
-                         
-        except Exception as e:
-            msgBox = QMessageBox()
-            msgBox.setIcon(QMessageBox.Warning)
-            msgBox.setText("لطفا تمامی فیلد هارا پر نمایید!")
-            msgBox.setWindowTitle("خطا")
-            msgBox.setStandardButtons(QMessageBox.Ok)
-            msgBox.exec_()
- 
-    def calculate_bahre(self):
-        try:
-            try:
-            
-                a = float(self.mablaq_entry_4.text().replace(',', ''))
-                b = float(self.tqest_entry_4.text())
-                c = float(self.bahre_entry_4.text())
-                
-                if a == 0 or b == 0 or c == 0:
-                    raise ZeroDivisionError("خطای تقسیم بر صفر")
-                
-                if self.mohasebe_banki_4.isChecked() == True:
-                    d = (a * (c/1200)) * (pow((1+(c/1200)),b)) / (pow((1+(c/1200)),b)-1) * b - a   
-                    a = self.lineEdit_3.setText(
-                    "مبلغ بهره شما : {:,.0f} تومان".format(d, ","))
-                else:
-                    d = a * (c/100) * (b+1) / 2400
-                    a = self.lineEdit_3.setText(
-                "مبلغ بهره شما : {:,.0f} تومان".format(d, ","))
-                    
-            except ZeroDivisionError as e:
-                msgBox = QMessageBox()
-                msgBox.setIcon(QMessageBox.Warning)
-                msgBox.setText("خطای تقسیم بر صفر!")
-                msgBox.setWindowTitle("خطا")
-                msgBox.setStandardButtons(QMessageBox.Ok)
-                msgBox.exec_()
-                print(e)       
-                    
-        except Exception as e:
-            msgBox = QMessageBox()
-            msgBox.setIcon(QMessageBox.Warning)
-            msgBox.setText("لطفا تمامی فیلد هارا پر نمایید!")
-            msgBox.setWindowTitle("خطا")
-            msgBox.setStandardButtons(QMessageBox.Ok)
-            msgBox.exec_()
-            
-    def calculate_mablaq(self):
-        try:
-            try:
-                a = float(self.tqest_entry_2.text())
-                b = float(self.mqest_entry_2.text().replace(',', ''))
-                c = float(self.bahre_entry_2.text())
-                
-                if a == 0 or b == 0 or c == 0:
-                    raise ZeroDivisionError("خطای تقسیم بر صفر")
-                d = (a * b)/(100*(c/100)+100) * 100
-                a = self.lineEdit_2.setText(
-                    "مبلغ وام شما : {:,.0f} تومان".format(d, ","))
-                
-            except ZeroDivisionError as e:
-                msgBox = QMessageBox()
-                msgBox.setIcon(QMessageBox.Warning)
-                msgBox.setText("خطای تقسیم بر صفر!")
-                msgBox.setWindowTitle("خطا")
-                msgBox.setStandardButtons(QMessageBox.Ok)
-                msgBox.exec_()
-                print(e)
-                
-        except Exception as e:
-            msgBox = QMessageBox()
-            msgBox.setIcon(QMessageBox.Warning)
-            msgBox.setText("لطفا تمامی فیلد هارا پر نمایید!")
-            msgBox.setWindowTitle("خطا")
-            msgBox.setStandardButtons(QMessageBox.Ok)
-            msgBox.exec_() 
-            print(e)
+            except Exception as e:
+                    msgBox = QMessageBox()
+                    msgBox.setIcon(QMessageBox.Warning)
+                    msgBox.setText("لطفا تمامی فیلد هارا پر نمایید!")
+                    msgBox.setWindowTitle("خطا")
+                    msgBox.setStandardButtons(QMessageBox.Ok)
+                    msgBox.exec_()
     
-    def compound_interest(self):
-        try:
+    def calculate_mablaq(self):
             try:
-                principal = float(self.mablaq_entry_7.text().replace(',', ''))
-                rate = float(self.bahre_entry_8.text())
-                time = float(self.time_entry.text())
+                    try:
+                            a = float(self.tqest_entry_2.text())
+                            b = float(self.mqest_entry_2.text().replace(',', ''))
+                            c = float(self.bahre_entry_2.text())
                 
-                if principal == 0 or rate == 0 or time == 0:
-                     raise ZeroDivisionError("خطای تقسیم بر صفر")
-                Amount = principal * (pow((1 + rate / 100), time))
-                CI = Amount - principal
-                CI = self.lineEdit_3.setText("سود مرکب شما : {:,.0f}".format(CI))
+                            if a == 0 or b == 0 or c == 0: 
+                                    raise ZeroDivisionError("خطای تقسیم بر صفر")
+                            d = (a * b)/(100*(c/100)+100) * 100
+                            a = self.lineEdit_2.setText(
+                            "مبلغ وام شما : {:,.0f} تومان".format(d, ","))
                 
-            except ZeroDivisionError as e:
-                msgBox = QMessageBox()
-                msgBox.setIcon(QMessageBox.Warning)
-                msgBox.setText("خطای تقسیم بر صفر!")
-                msgBox.setWindowTitle("خطا")
-                msgBox.setStandardButtons(QMessageBox.Ok)
-                msgBox.exec_()
-                print(e)
+                    except ZeroDivisionError as e:
+                             
+                            msgBox = QMessageBox()
+                            msgBox.setIcon(QMessageBox.Warning)
+                            msgBox.setText("خطای تقسیم بر صفر!")
+                            msgBox.setWindowTitle("خطا")
+                            msgBox.setStandardButtons(QMessageBox.Ok)
+                            msgBox.exec_()
+                            print(e)
                 
-        except ValueError as e:
-            msgBox = QMessageBox()
-            msgBox.setIcon(QMessageBox.Warning)
-            msgBox.setText("لطفا تمامی فیلد هارا پر نمایید!")
-            msgBox.setWindowTitle("خطا")
-            msgBox.setStandardButtons(QMessageBox.Ok)
-            msgBox.exec_()
+            except Exception as e:
+                      
+                    msgBox = QMessageBox()
+                    msgBox.setIcon(QMessageBox.Warning)
+                    msgBox.setText("لطفا تمامی فیلد هارا پر نمایید!")
+                    msgBox.setWindowTitle("خطا")
+                    msgBox.setStandardButtons(QMessageBox.Ok)
+                    msgBox.exec_() 
+                    print(e)
+                    
+    def compound_interest(self):
+            try:
+                    try:
+                            
+                            principal = float(self.mablaq_entry_7.text().replace(',', ''))
+                            rate = float(self.bahre_entry_8.text())
+                            time = float(self.time_entry.text())
+                
+                            if principal == 0 or rate == 0 or time == 0: 
+                                    raise ZeroDivisionError("خطای تقسیم بر صفر")
+                            Amount = principal * (pow((1 + rate / 100), time))
+                            CI = Amount - principal
+                            CI = self.lineEdit_3.setText("سود مرکب شما : {:,.0f}".format(CI))
+                
+                    except ZeroDivisionError as e:
+                             
+                            msgBox = QMessageBox()
+                            msgBox.setIcon(QMessageBox.Warning)
+                            msgBox.setText("خطای تقسیم بر صفر!")
+                            msgBox.setWindowTitle("خطا")
+                            msgBox.setStandardButtons(QMessageBox.Ok)
+                            msgBox.exec_()
+                            print(e)
+                
+            except ValueError as e:
+                         
+                    msgBox = QMessageBox()
+                    msgBox.setIcon(QMessageBox.Warning)
+                    msgBox.setText("لطفا تمامی فیلد هارا پر نمایید!")
+                    msgBox.setWindowTitle("خطا")
+                    msgBox.setStandardButtons(QMessageBox.Ok)
+                    msgBox.exec_()
 
 if __name__ == "__main__":
     import sys
